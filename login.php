@@ -17,7 +17,7 @@ try {
 
         }else{
             // local login
-            $sql = sprintf("SELECT * FROM `users` WHERE `uname`='%s' and `passwd`='%s' limit 1", $_POST['uname'], $_POST['passwd']);
+            $sql = sprintf("SELECT * FROM `users` WHERE `type`='local' and `uname`='%s' and `passwd`='%s' limit 1", $_POST['uname'], $_POST['passwd']);
 
             $result =  mysql_query( $sql, $conn );
 
@@ -67,6 +67,7 @@ try {
                 echo '</tr>';
             }
             echo '</table>';
+            echo "<a href='index.php'>回首頁</a>";
 
             // 以下取出資料
             // 自訂帳號
@@ -89,7 +90,7 @@ try {
             // 查詢資料庫是否已有紀錄
             // 有　　　則更新
             // 沒有　　則新增
-            $sql = sprintf("SELECT * FROM `users` WHERE `uname`='%s' limit 1", $uname);
+            $sql = sprintf("SELECT * FROM `users` WHERE `uname`='%s'  and `type`='ntpc' limit 1", $uname);
 
             $result =  mysql_query( $sql, $conn );
 
@@ -99,7 +100,7 @@ try {
 
                 $sql = sprintf("UPDATE `users` 
                                 SET `s_grade` = '%s', `s_class` = '%s', `s_number` = '%s', `cname` = '%s', `role` = '%s' 
-                                WHERE `uname` = '%s'",
+                                WHERE `uname` = '%s' and `type`='ntpc'",
                                 $s_grade, $s_class, $s_number, $cname, $role, $uname);
 
                 mysql_query( $sql, $conn );

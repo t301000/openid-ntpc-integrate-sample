@@ -19,6 +19,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `s_number` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
   `cname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `type` enum('local','ntpc') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ntpc',
   PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+--
+-- 資料表的匯出資料 `users`
+--
+
+INSERT INTO `users` (`id`, `uname`, `passwd`, `s_grade`, `s_class`, `s_number`, `cname`, `role`, `type`) VALUES
+(1, 'admin', '123456', '00', '00', '00', '黃小寶', '管理員', 'local');
